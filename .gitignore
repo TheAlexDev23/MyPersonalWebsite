@@ -1,6 +1,8 @@
 ﻿*.swp
 *.*~
 **/*.db
+**/*.db-shm
+**/*.db-wal
 project.lock.json
 .DS_Store
 *.pyc
