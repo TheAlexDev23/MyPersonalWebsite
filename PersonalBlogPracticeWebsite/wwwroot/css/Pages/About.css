@@ -1,0 +1,14 @@
+﻿ul:not(.nav) li {
+    size: 15px;
+    margin: 15px;
+}
+
+ul li a {
+    text-decoration: none;
+}
+
+ul:not(.nav) li a {color: #74949b
+}
+ul:not(.nav) li a:visited {color: #183e79;}
+ul:not(.nav) li a:hover {color: #40deb9;}
+ul:not(.nav) li a:active {color: #73aad1;}

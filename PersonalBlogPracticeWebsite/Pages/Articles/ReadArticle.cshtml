@@ -1,0 +1,10 @@
+﻿@page "/Articles/ReadArticle/{articleName}"
+@model PersonalBlogPracticeWebsite.Pages.Articles.ReadArticle
+
+@{
+    ViewData["Title"] = Model.ArticleName;
+}
+
+<div class="text-center">
+    @Html.Raw(Model.htmlContent)
+</div>
