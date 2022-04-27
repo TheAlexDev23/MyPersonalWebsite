@@ -35,7 +35,7 @@ namespace PersonalBlogPracticeWebsite.Migrations
 
                     b.HasIndex("ArticleInfoId");
 
-                    b.ToTable("Articles", (string)null);
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("PersonalBlogPracticeWebsite.Data.ArticleContent", b =>
@@ -55,7 +55,7 @@ namespace PersonalBlogPracticeWebsite.Migrations
 
                     b.HasKey("ArticleContentId");
 
-                    b.ToTable("ArticleContent", (string)null);
+                    b.ToTable("ArticleContent");
                 });
 
             modelBuilder.Entity("PersonalBlogPracticeWebsite.Data.ArticleInfo", b =>
@@ -75,9 +75,13 @@ namespace PersonalBlogPracticeWebsite.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ThumbnailImage")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("ArticleInfoId");
 
-                    b.ToTable("ArticleInfo", (string)null);
+                    b.ToTable("ArticleInfo");
                 });
 
             modelBuilder.Entity("PersonalBlogPracticeWebsite.Data.Article", b =>

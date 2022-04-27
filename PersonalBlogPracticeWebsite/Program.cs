@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using PersonalBlogPracticeWebsite.Data;
 using PersonalBlogPracticeWebsite.Services;
-
+using PersonalBlogPracticeWebsite.Services.Article;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +15,8 @@ builder.Services.AddDbContext<ArticleDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddTransient<IArticleReader, ArticleReader>();
+builder.Services.AddTransient<IArticleFetcher, ArticleFetcher>();
+builder.Services.AddTransient<IArticleToArticleSmallViewConverter, ArticleToArticleSmallViewConverter>();
 
 builder.Services.AddHttpClient();
 
