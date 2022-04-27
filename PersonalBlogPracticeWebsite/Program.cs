@@ -1,7 +1,5 @@
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using PersonalBlogPracticeWebsite.Data;
-using PersonalBlogPracticeWebsite.Services;
 using PersonalBlogPracticeWebsite.Services.Article;
 
 var builder = WebApplication.CreateBuilder(args);

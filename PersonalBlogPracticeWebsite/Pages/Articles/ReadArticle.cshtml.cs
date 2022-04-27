@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using PersonalBlogPracticeWebsite.Services;
 using PersonalBlogPracticeWebsite.Services.Article;
 
 namespace PersonalBlogPracticeWebsite.Pages.Articles;
