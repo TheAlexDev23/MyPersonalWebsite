@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace PersonalBlogPracticeWebsite.Data;
+namespace PersonalBlogPracticeWebsite.Data.Article;
 
 public class ArticleDbContext : DbContext
 {

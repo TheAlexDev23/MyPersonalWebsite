@@ -4,5 +4,5 @@ namespace PersonalBlogPracticeWebsite.Services.Article;
 
 public interface IArticleToArticleSmallViewConverter
 {
-    public ArticleSmallViewPartial Convert(Data.Article article);
+    public ArticleSmallViewPartial Convert(Data.Article.Article article);
 }

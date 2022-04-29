@@ -1,0 +1,61 @@
+﻿@page "/Articles/Create/{type?}"
+@using System.Net
+@model PersonalBlogPracticeWebsite.Pages.Articles.Create
+
+@section InlineCSS
+{
+    body {
+        margin-left: 25px; 
+        margin-right: 25px; 
+    }
+}
+
+@{
+}
+
+<h1>Create your article</h1>
+
+<p>Create your article and submit it. I will review it and post it. The review might take some hours or days, depending 
+    on how busy I am at that moment.</p>
+
+@if (HttpContext.Request.Query["type"].ToString() == null)
+{
+    <div style="display: flex; flex-direction: row;">
+        <button class="btn btn-primary"
+                asp-page="/Articles/Create" asp-route-type="html">Submit HTML</button>
+        <button class="btn btn-primary"
+                asp-page="/Articles/Create" asp-route-type="MD">Submit Markdown code</button>
+        <button class="btn btn-primary"
+                asp-page="/Articles/Create" asp-route-type="URL">Submit a URL to a Markdown file</button>
+    </div>
+}
+else
+{
+    <form method="post">
+        <div class="form-control">
+            <label asp-for="formSubmit.AuthorName"></label>
+            <input type="text" class="form-control" asp-for="formSubmit.AuthorName"/>
+            <span asp-validation-for="formSubmit.AuthorName"></span>
+        </div>
+        
+        <div class="form-control">
+            <label asp-for="formSubmit.CreationDate"></label>
+            <input type="date" class="form-control" asp-for="formSubmit.CreationDate"/>
+            <span asp-validation-for="formSubmit.CreationDate"></span>
+        </div>
+        
+        <div class="form-control">
+            <label asp-for="formSubmit.Content"></label>
+            <input type="text" class="form-control" placeholder="Your submission" asp-for="formSubmit.Content"/>
+            <span asp-validation-for="formSubmit.CreationDate"></span>
+        </div>
+
+        <div class="form-control">
+            <button type="submit"
+                    class="btn btn-primary">Submit</button>
+            <button type="reset"
+                    class="btn btn-danger">Clear</button>
+        </div>
+    </form>
+}
+

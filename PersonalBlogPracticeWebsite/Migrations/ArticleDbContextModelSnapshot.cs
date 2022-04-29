@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PersonalBlogPracticeWebsite.Data;
+using PersonalBlogPracticeWebsite.Data.Article;
 
 #nullable disable
 

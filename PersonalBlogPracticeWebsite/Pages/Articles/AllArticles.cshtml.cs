@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using PersonalBlogPracticeWebsite.Data;
+using PersonalBlogPracticeWebsite.Data.Article;
 using PersonalBlogPracticeWebsite.Pages.Partials;
 using PersonalBlogPracticeWebsite.Services.Article;
 

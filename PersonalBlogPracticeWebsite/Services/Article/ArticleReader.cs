@@ -1,6 +1,7 @@
 ﻿using Markdig;
 using Microsoft.EntityFrameworkCore;
 using PersonalBlogPracticeWebsite.Data;
+using PersonalBlogPracticeWebsite.Data.Article;
 
 namespace PersonalBlogPracticeWebsite.Services.Article;
 

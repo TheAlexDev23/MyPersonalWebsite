@@ -4,7 +4,7 @@ namespace PersonalBlogPracticeWebsite.Services.Article;
 
 public class ArticleToArticleSmallViewConverter : IArticleToArticleSmallViewConverter
 {
-    public ArticleSmallViewPartial Convert(Data.Article article) => new ArticleSmallViewPartial()
+    public ArticleSmallViewPartial Convert(Data.Article.Article article) => new ArticleSmallViewPartial()
         {
             ArticleAuthor = article.ArticleInfo.AuthorName,
             ArticleTitle = article.ArticleInfo.Name,

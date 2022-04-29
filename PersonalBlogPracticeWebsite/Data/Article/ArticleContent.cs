@@ -1,7 +1,4 @@
-﻿using System.Net.Mime;
-using Microsoft.AspNetCore.Components;
-
-namespace PersonalBlogPracticeWebsite.Data;
+﻿namespace PersonalBlogPracticeWebsite.Data.Article;
 
 public class ArticleContent
 {

@@ -1,4 +1,4 @@
-﻿namespace PersonalBlogPracticeWebsite.Data;
+﻿namespace PersonalBlogPracticeWebsite.Data.Article;
 
 public class Article
 {
