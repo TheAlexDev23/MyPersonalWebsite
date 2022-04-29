@@ -2,10 +2,6 @@
 
 namespace PersonalBlogPracticeWebsite.Pages.Blogs;
 
-public class Brainfuck : PageModel
-{
-    public void OnGet()
-    {
-        
-    }
+public class Brainfuck : PageModel {
+    public void OnGet() { }
 }

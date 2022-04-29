@@ -7,38 +7,37 @@
 
 @section InlineCSS
 {
-   .blog-list-div {
-       margin-top: 20px;
-   }
-   
-   .blog-list-div ul {
-       list-style: none;
-       display: flex;
-       flex-direction: row;
-       padding: 15px;
-   }
-   
-   .blog-list-div ul li div:not(.blog-thumbnail){
-       margin: 15px;
-       outline: #1C6EA4 solid 3px;
-       outline-offset: 6px;
-   }
-   
-   .blog-list-div ul li .blog-thumbnail {
-       text-align: center;
-   }
-   
-   .blog-list-div ul li div img {
-       width: 150px;
-       height: 150px;
-   }
+    .blog-list-div {
+    margin-top: 20px;
+    }
+
+    .blog-list-div ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    }
+
+    .blog-list-div ul li div:not(.blog-thumbnail){
+    margin: 15px;
+    outline: #1C6EA4 solid 3px;
+    outline-offset: 6px;
+    }
+
+    .blog-list-div ul li .blog-thumbnail {
+    text-align: center;
+    }
+
+    .blog-list-div ul li div img {
+    width: 150px;
+    height: 150px;
+    }
 }
 
 <div>
     <div class="blog-list-div">
         <ul>
-            @foreach (var article in Model.ArticlesSmallView)
-            {
+            @foreach (var article in Model.ArticlesSmallView) {
                 <li>
                     <a asp-page="/Articles/ReadArticle" asp-route-articleName="@article.ArticleTitle">
                         <partial name="Partials/ArticleSmallViewPartial" model="article"/>

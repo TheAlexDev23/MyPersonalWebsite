@@ -2,10 +2,6 @@
 
 namespace PersonalBlogPracticeWebsite.Pages.Errors;
 
-public class NotImplemented : PageModel
-{
-    public void OnGet()
-    {
-        
-    }
+public class NotImplemented : PageModel {
+    public void OnGet() { }
 }

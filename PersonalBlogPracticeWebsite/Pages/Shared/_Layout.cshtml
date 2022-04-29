@@ -4,14 +4,14 @@
 <head>
     <title>@ViewData["Title"] - Alex Dev</title>
     <link rel="stylesheet" href="~/css/bootstrap.min.css"/>
-    
+
     <style>
         body {
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the top bar */
         }
-        @await RenderSectionAsync("InlineCSS", required:false)
+        @await RenderSectionAsync("InlineCSS", false)
     </style>
-    @await RenderSectionAsync("AdditionalCss", required:false)
+    @await RenderSectionAsync("AdditionalCss", false)
 </head>
 <body>
 <header>

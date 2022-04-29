@@ -3,17 +3,14 @@ using System.Net.Mail;
 
 namespace PersonalBlogPracticeWebsite.Services;
 
-public class EmailSender : IEmailSender
-{
-    private IConfiguration _conf { get; set; }
-
-    public EmailSender(IConfiguration conf)
-    {
+public class EmailSender : IEmailSender {
+    public EmailSender(IConfiguration conf) {
         _conf = conf;
     }
-    
-    public Task Send(string to, string message)
-    {
+
+    private IConfiguration _conf { get; }
+
+    public Task Send(string to, string message) {
         var client = new SmtpClient
         {
             Port = 587,
@@ -23,7 +20,8 @@ public class EmailSender : IEmailSender
             UseDefaultCredentials = false,
             Credentials = new NetworkCredential(_conf["creation_sender_email"], _conf["creation_sender_passwd"])
         };
-        
-        return client.SendMailAsync(_conf["creation_sender_reciever"],to, "Someone wants to submit an article", message);
+
+        return client.SendMailAsync(_conf["creation_sender_reciever"], to, "Someone wants to submit an article",
+            message);
     }
 }

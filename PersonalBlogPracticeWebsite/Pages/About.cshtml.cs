@@ -2,10 +2,6 @@
 
 namespace PersonalBlogPracticeWebsite.Pages;
 
-public class About : PageModel
-{
-    public void OnGet()
-    {
-        
-    }
+public class About : PageModel {
+    public void OnGet() { }
 }

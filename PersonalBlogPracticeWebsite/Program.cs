@@ -10,18 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
 
 //Add EF Core
-builder.Services.AddDbContext<ArticleDbContext>(options =>
-{
+builder.Services.AddDbContext<ArticleDbContext>(options => {
     options.UseSqlite(builder.Configuration.GetConnectionString("ArticleDb"));
 });
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-/*
 //Add identity
-
 builder.Services.AddIdentity<IdentityUser, IdentityRole>();
-*/
 
 builder.Services.AddTransient<IArticleReader, ArticleReader>();
 builder.Services.AddTransient<IArticleFetcher, ArticleFetcher>();
@@ -33,8 +29,7 @@ builder.Services.AddHttpClient();
 //Add razor pages and configure HSTS
 builder.Services.AddRazorPages();
 
-builder.Services.AddHsts(options =>
-{
+builder.Services.AddHsts(options => {
     options.MaxAge = TimeSpan.FromDays(5); //A random value that should work
 });
 
@@ -44,10 +39,7 @@ app.UseStatusCodePagesWithRedirects("/Errors/e{0}");
 
 app.UseHttpsRedirection();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseHsts();
-}
+if (!app.Environment.IsDevelopment()) app.UseHsts();
 
 app.UseStaticFiles();
 

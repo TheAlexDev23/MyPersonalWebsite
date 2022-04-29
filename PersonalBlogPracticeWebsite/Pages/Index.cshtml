@@ -12,13 +12,12 @@
 
 <div style="margin-left: 25px; margin-right: 25px;">
     <h1>Welcome to my blog site</h1>
-    
+
     <h2>Recommended articles:</h2>
-    
+
     <div class="blog-list-div">
         <ul>
-            @foreach (var article in Model.recomemdedArticles)
-            {
+            @foreach (var article in Model.recomemdedArticles) {
                 <li>
                     <a asp-page="/Articles/ReadArticle" asp-route-articleName="@article.ArticleTitle">
                         <partial name="Partials/ArticleSmallViewPartial" model="article"/>

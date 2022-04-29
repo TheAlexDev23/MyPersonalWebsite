@@ -2,10 +2,6 @@
 
 namespace PersonalBlogPracticeWebsite.Pages.Articles;
 
-public class CreationDone : PageModel
-{
-    public void OnGet()
-    {
-        
-    }
+public class CreationDone : PageModel {
+    public void OnGet() { }
 }

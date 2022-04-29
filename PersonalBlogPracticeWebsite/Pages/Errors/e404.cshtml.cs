@@ -2,10 +2,6 @@
 
 namespace PersonalBlogPracticeWebsite.Pages.Errors;
 
-public class e404 : PageModel
-{
-    public void OnGet()
-    {
-        
-    }
+public class e404 : PageModel {
+    public void OnGet() { }
 }
