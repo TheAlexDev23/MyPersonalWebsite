@@ -20,6 +20,7 @@ public class Create : PageModel {
 
     public async Task<IActionResult> OnPostAsync() {
         await _sender.Send(_conf["creation_sender_reciever"],
+            "Someone wants to submit a new article",
             $"New Article Submition by: {formSubmit.AuthorName} " +
             $"({formSubmit.CreationDate})\n" +
             $"{formSubmit.Content}");

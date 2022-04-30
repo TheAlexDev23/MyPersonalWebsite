@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -32,6 +34,7 @@
                     <a class="nav-link" asp-page="/Articles/AllArticles">Articles</a>
                 </li>
             </ul>
+            <partial name="Partials/_LoginPartial"/>
         </div>
     </nav>
 </header>

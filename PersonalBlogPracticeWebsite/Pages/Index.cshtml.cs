@@ -6,9 +6,11 @@ namespace PersonalBlogPracticeWebsite.Pages;
 
 public class Index : PageModel {
     private readonly ArticleDbContext _context;
+    private readonly ILogger<Index> _logger;
 
-    public Index(ArticleDbContext context) {
+    public Index(ArticleDbContext context, ILogger<Index> logger) {
         _context = context;
+        _logger = logger;
     }
 
     public List<ArticleSmallViewPartial> recomemdedArticles { get; set; } = new()

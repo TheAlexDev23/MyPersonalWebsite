@@ -10,7 +10,7 @@ public class EmailSender : IEmailSender {
 
     private IConfiguration _conf { get; }
 
-    public Task Send(string to, string message) {
+    public Task Send(string to, string subject, string message) {
         var client = new SmtpClient
         {
             Port = 587,
@@ -21,7 +21,7 @@ public class EmailSender : IEmailSender {
             Credentials = new NetworkCredential(_conf["creation_sender_email"], _conf["creation_sender_passwd"])
         };
 
-        return client.SendMailAsync(_conf["creation_sender_reciever"], to, "Someone wants to submit an article",
+        return client.SendMailAsync(_conf["creation_sender_reciever"], to, subject,
             message);
     }
 }

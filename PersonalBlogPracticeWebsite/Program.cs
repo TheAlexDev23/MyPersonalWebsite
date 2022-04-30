@@ -2,6 +2,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PersonalBlogPracticeWebsite.Data.Article;
+using PersonalBlogPracticeWebsite.Data.Users;
 using PersonalBlogPracticeWebsite.Services;
 using PersonalBlogPracticeWebsite.Services.Article;
 
@@ -14,10 +15,25 @@ builder.Services.AddDbContext<ArticleDbContext>(options => {
     options.UseSqlite(builder.Configuration.GetConnectionString("ArticleDb"));
 });
 
+builder.Services.AddDbContext<UsersDbContext>(options => {
+    options.UseSqlite(builder.Configuration.GetConnectionString("UserDb"));
+});
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //Add identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(
+        options => {
+            options.Password.RequireDigit = true;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireUppercase = true;
+            options.Password.RequiredLength = 8;
+
+            options.SignIn.RequireConfirmedEmail = true;
+            options.User.RequireUniqueEmail = true;
+        })
+    .AddEntityFrameworkStores<UsersDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddTransient<IArticleReader, ArticleReader>();
 builder.Services.AddTransient<IArticleFetcher, ArticleFetcher>();
@@ -36,6 +52,8 @@ builder.Services.AddHsts(options => {
 var app = builder.Build();
 
 app.UseStatusCodePagesWithRedirects("/Errors/e{0}");
+
+app.UseAuthentication();
 
 app.UseHttpsRedirection();
 

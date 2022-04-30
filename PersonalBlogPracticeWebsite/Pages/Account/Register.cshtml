@@ -1,0 +1,31 @@
+﻿@page
+@model PersonalBlogPracticeWebsite.Pages.Account.Register
+
+@{
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="RegModel.Email"></label>
+        <input asp-for="RegModel.Email"/>
+        <span asp-validation-for="RegModel.Email"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="RegModel.Password"></label>
+        <input asp-for="RegModel.Password"/>
+        <span asp-validation-for="RegModel.Password"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="RegModel.RePassword"></label>
+        <input asp-for="RegModel.RePassword"/>
+        <span asp-validation-for="RegModel.RePassword"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="RegModel.KeepSingedIn"></label>
+        <input asp-for="RegModel.KeepSingedIn"/>
+        <button type="submit">Create my account!</button>
+    </div>
+</form>
