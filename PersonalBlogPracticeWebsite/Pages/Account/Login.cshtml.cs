@@ -17,6 +17,9 @@ public class Login : PageModel {
     public void OnGet() { }
 
     public async Task<IActionResult> OnPostAsync() {
+        if (!ModelState.IsValid) {
+            return Page();
+        }
         var user = await _userManager.FindByEmailAsync(LogModel.Email);
         if (user == null)
         {

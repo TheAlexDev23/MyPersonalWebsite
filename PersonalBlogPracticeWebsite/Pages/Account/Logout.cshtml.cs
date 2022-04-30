@@ -24,9 +24,7 @@ public class Logout : PageModel {
         {
             return LocalRedirect(returnUrl);
         }
-        else
-        {
-            return RedirectToPage("/Index");
-        }
+
+        return RedirectToPage("/Index");
     }
 }

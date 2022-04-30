@@ -28,9 +28,13 @@ public class Register : PageModel {
             return Page();
         }
 
+        if (!ModelState.IsValid) {
+            return Page();
+        } 
+        
         var newUser = new IdentityUser
         {
-            UserName = RegModel.Email,
+            UserName = RegModel.UserName,
             Email = RegModel.Email
         };
         
@@ -47,10 +51,12 @@ public class Register : PageModel {
         var emailConfirmationToken = HttpUtility.UrlEncode(ConfirmationToken);
         
         
-        await _sender.Send(RegModel.Email, "Confirm your email",$"Verify your email, Click <a href=\"https://{Request.PathBase}/Account/Register?handler=Confirm&id={newUser.Id}&token={emailConfirmationToken}\">" +
-                                           $"here</a> to verify your email");
+        await _sender.Send(RegModel.Email, "Confirm your email",
+            $"Verify your email, Click " +
+            $"https://{Request.Host}/Account/Register?handler=Confirm&id={newUser.Id}&token={emailConfirmationToken} " +
+            $"to verify your email");
 
-        return Page();
+        return RedirectToPage("/Account/CheckYourEmail");
     }
 
     public async Task<IActionResult> OnGetConfirmAsync(string id, string token) {
@@ -69,15 +75,22 @@ public class Register : PageModel {
     [BindProperty] public RegisterModel RegModel { get; set; }
 
     public class RegisterModel {
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
+        
         [EmailAddress(ErrorMessage = "Not a valid mail")]
         [Required(ErrorMessage = "This field is required")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
         [Display(Name = "Repeat password")]
+        [DataType(DataType.Password)]
         public string RePassword { get; set; }
 
         [Display(Name = "Remember me")] public bool KeepSingedIn { get; set; }
