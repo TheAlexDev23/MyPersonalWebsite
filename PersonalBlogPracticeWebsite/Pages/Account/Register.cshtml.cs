@@ -21,7 +21,8 @@ public class Register : PageModel {
     }
 
     public void OnGet() { }
-
+    
+    //Register the new user
     public async Task<IActionResult> OnPostAsync() {
         if (RegModel.RePassword != RegModel.Password) {
             ModelState.AddModelError(string.Empty, "Passwords don't match");
@@ -49,18 +50,19 @@ public class Register : PageModel {
         var ConfirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
 
         var emailConfirmationToken = HttpUtility.UrlEncode(ConfirmationToken);
-        
-        
-        await _sender.Send(RegModel.Email, "Confirm your email",
-            $"Verify your email, Click " +
-            $"https://{Request.Host}/Account/Register?handler=Confirm&id={newUser.Id}&token={emailConfirmationToken} " +
-            $"to verify your email");
+
+        await SendEmailConfirmationLink(newUser, emailConfirmationToken);
 
         return RedirectToPage("/Account/CheckYourEmail");
     }
 
-    public async Task<IActionResult> OnGetConfirmAsync(string id, string token) {
-        Console.WriteLine("Email Confirmation on process " + id + " " + token);
+    private async Task SendEmailConfirmationLink(IdentityUser newUser, string? emailConfirmationToken) {
+        await _sender.Send(RegModel.Email, "Confirm your email",
+            $"In order to verify your email click here: " +
+            $"https://{Request.Host}/Account/Register?handler=Confirm&id={newUser.Id}&token={emailConfirmationToken}&persistent={RegModel.KeepSingedIn}");
+    }
+
+    public async Task<IActionResult> OnGetConfirmAsync(string id, string token, bool persistent) {
         var user = await _userManager.FindByIdAsync(id);
         if(user == null)
             throw new InvalidOperationException();
@@ -68,6 +70,8 @@ public class Register : PageModel {
         var emailConfirmationResult = await _userManager.ConfirmEmailAsync(user, token);
         if (!emailConfirmationResult.Succeeded)            
             return Content(emailConfirmationResult.Errors.Select(error => error.Description).Aggregate((allErrors, error) => allErrors += ", " + error));
+
+        await _signInManager.SignInAsync(user, persistent);
 
         return RedirectToPage("/Index");
     }

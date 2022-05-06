@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PersonalBlogPracticeWebsite.Services;
 
 namespace PersonalBlogPracticeWebsite.Pages.Articles;
 
+[Authorize]
 public class Create : PageModel {
     public Create(IEmailSender sender, IConfiguration conf) {
         _sender = sender;
@@ -17,7 +19,7 @@ public class Create : PageModel {
     [BindProperty] public Input formSubmit { get; set; }
 
     public void OnGet() { }
-
+    
     public async Task<IActionResult> OnPostAsync() {
         await _sender.Send(_conf["creation_sender_reciever"],
             "Someone wants to submit a new article",
