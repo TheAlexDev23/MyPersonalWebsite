@@ -11,8 +11,8 @@ using PersonalBlogPracticeWebsite.Data.Users;
 namespace PersonalBlogPracticeWebsite.Migrations.UsersDb
 {
     [DbContext(typeof(UsersDbContext))]
-    [Migration("20220430100208_MoveDbToIdentityDbContext")]
-    partial class MoveDbToIdentityDbContext
+    [Migration("20220528104547_Initial-Users")]
+    partial class InitialUsers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

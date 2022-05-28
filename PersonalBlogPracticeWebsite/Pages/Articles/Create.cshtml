@@ -22,20 +22,20 @@
 
 <form method="post">
     <div class="mb-3">
-        <label asp-for="formSubmit.AuthorName"></label>
+        <label style="display: block;" asp-for="formSubmit.AuthorName"></label>
         <input type="text" class="mb-3" asp-for="formSubmit.AuthorName"/>
         <span asp-validation-for="formSubmit.AuthorName"></span>
     </div>
 
     <div class="mb-3">
-        <label asp-for="formSubmit.CreationDate"></label>
+        <label style="display: block;" asp-for="formSubmit.CreationDate"></label>
         <input type="date" class="mb-3" asp-for="formSubmit.CreationDate"/>
         <span asp-validation-for="formSubmit.CreationDate"></span>
     </div>
 
     <div class="mb-3">
-        <label asp-for="formSubmit.Content"></label>
-        <input type="text" class="mb-3" placeholder="Your submission" asp-for="formSubmit.Content"/>
+        <label style="display: block;" asp-for="formSubmit.Content"></label>
+        <textarea type="text" class="mb-3" placeholder="Your submission" asp-for="formSubmit.Content"></textarea>
         <span asp-validation-for="formSubmit.CreationDate"></span>
     </div>
 

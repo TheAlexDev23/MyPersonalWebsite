@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PersonalBlogPracticeWebsite.Data;
 using PersonalBlogPracticeWebsite.Data.Article;
 
 #nullable disable
@@ -12,24 +11,24 @@ using PersonalBlogPracticeWebsite.Data.Article;
 namespace PersonalBlogPracticeWebsite.Migrations
 {
     [DbContext(typeof(ArticleDbContext))]
-    [Migration("20220425185722_CreateArticlesDb")]
-    partial class CreateArticlesDb
+    [Migration("20220528104501_Intial")]
+    partial class Intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
 
-            modelBuilder.Entity("PersonalBlogPracticeWebsite.Data.Article", b =>
+            modelBuilder.Entity("PersonalBlogPracticeWebsite.Data.Article.Article", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ArticleContentId")
+                    b.Property<int?>("ArticleContentId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ArticleInfoId")
+                    b.Property<int?>("ArticleInfoId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -41,7 +40,7 @@ namespace PersonalBlogPracticeWebsite.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("PersonalBlogPracticeWebsite.Data.ArticleContent", b =>
+            modelBuilder.Entity("PersonalBlogPracticeWebsite.Data.Article.ArticleContent", b =>
                 {
                     b.Property<int>("ArticleContentId")
                         .ValueGeneratedOnAdd()
@@ -61,21 +60,22 @@ namespace PersonalBlogPracticeWebsite.Migrations
                     b.ToTable("ArticleContent");
                 });
 
-            modelBuilder.Entity("PersonalBlogPracticeWebsite.Data.ArticleInfo", b =>
+            modelBuilder.Entity("PersonalBlogPracticeWebsite.Data.Article.ArticleInfo", b =>
                 {
                     b.Property<int>("ArticleInfoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AuthorName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ThumbnailImage")
                         .HasColumnType("TEXT");
 
                     b.HasKey("ArticleInfoId");
@@ -83,19 +83,15 @@ namespace PersonalBlogPracticeWebsite.Migrations
                     b.ToTable("ArticleInfo");
                 });
 
-            modelBuilder.Entity("PersonalBlogPracticeWebsite.Data.Article", b =>
+            modelBuilder.Entity("PersonalBlogPracticeWebsite.Data.Article.Article", b =>
                 {
-                    b.HasOne("PersonalBlogPracticeWebsite.Data.ArticleContent", "ArticleContent")
+                    b.HasOne("PersonalBlogPracticeWebsite.Data.Article.ArticleContent", "ArticleContent")
                         .WithMany()
-                        .HasForeignKey("ArticleContentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ArticleContentId");
 
-                    b.HasOne("PersonalBlogPracticeWebsite.Data.ArticleInfo", "ArticleInfo")
+                    b.HasOne("PersonalBlogPracticeWebsite.Data.Article.ArticleInfo", "ArticleInfo")
                         .WithMany()
-                        .HasForeignKey("ArticleInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ArticleInfoId");
 
                     b.Navigation("ArticleContent");
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PersonalBlogPracticeWebsite.Migrations
 {
-    public partial class CreateArticlesDb : Migration
+    public partial class Intial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,8 +30,9 @@ namespace PersonalBlogPracticeWebsite.Migrations
                 {
                     ArticleInfoId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    AuthorName = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    AuthorName = table.Column<string>(type: "TEXT", nullable: true),
+                    ThumbnailImage = table.Column<string>(type: "TEXT", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -45,8 +46,8 @@ namespace PersonalBlogPracticeWebsite.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ArticleInfoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ArticleContentId = table.Column<int>(type: "INTEGER", nullable: false)
+                    ArticleInfoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    ArticleContentId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,14 +56,12 @@ namespace PersonalBlogPracticeWebsite.Migrations
                         name: "FK_Articles_ArticleContent_ArticleContentId",
                         column: x => x.ArticleContentId,
                         principalTable: "ArticleContent",
-                        principalColumn: "ArticleContentId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ArticleContentId");
                     table.ForeignKey(
                         name: "FK_Articles_ArticleInfo_ArticleInfoId",
                         column: x => x.ArticleInfoId,
                         principalTable: "ArticleInfo",
-                        principalColumn: "ArticleInfoId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ArticleInfoId");
                 });
 
             migrationBuilder.CreateIndex(
